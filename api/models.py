@@ -1,10 +1,11 @@
 from django.db import models
 import uuid
 
+
 # o objetivo da model e fazer a ponte com o banco de dados
-# Esta classe representa a estrutura de um produto 
+# Esta classe representa a estrutura de um produto
 class Product(models.Model):
-    #objetos UUID importando do .models e do uuid(classe dentro do init)
+    # objetos UUID importando do .models e do uuid(classe dentro do init)
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255)
     price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -14,7 +15,8 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-# 
+
+#
 class Sale(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

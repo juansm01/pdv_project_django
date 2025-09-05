@@ -53,7 +53,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    #interceptador com determinada função/variavel
+    # interceptador com determinada função/variavel
 ]
 
 ROOT_URLCONF = "system.urls"

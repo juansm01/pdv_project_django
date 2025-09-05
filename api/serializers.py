@@ -2,6 +2,7 @@
 from rest_framework import serializers
 from .models import Product, Sale, SaleItem
 
+
 class ProductSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     name = serializers.CharField(max_length=255)
@@ -25,7 +26,9 @@ class SaleItemSerializer(serializers.Serializer):
     )
     product_name = serializers.CharField(source="product.name", read_only=True)
     quantity = serializers.IntegerField()
-    unit_price = serializers.DecimalField(max_digits=10, decimal_places=2, read_only=True)
+    unit_price = serializers.DecimalField(
+        max_digits=10, decimal_places=2, read_only=True
+    )
 
     def create(self, validated_data):
         return SaleItem.objects.create(**validated_data)
@@ -49,14 +52,14 @@ class SaleSerializer(serializers.Serializer):
     )
 
     def create(self, validated_data):
-        create_items_data = validated_data.pop('create_items', [])
+        create_items_data = validated_data.pop("create_items", [])
         sale = Sale.objects.create(**validated_data)
         for item_data in create_items_data:
-            product = Product.objects.get(id=item_data['product_id'])
+            product = Product.objects.get(id=item_data["product_id"])
             SaleItem.objects.create(
                 sale=sale,
                 product=product,
-                quantity=item_data['quantity'],
+                quantity=item_data["quantity"],
                 unit_price=product.price,
             )
         return sale

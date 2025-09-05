@@ -24,7 +24,8 @@ def create(validated_data):
         # lógica de estoque
         if product.stock < quantity:
             raise serializers.ValidationError(
-                f"Estoque insuficiente para o produto {product.name}, disponível: {product.stock}"
+                f"Estoque insuficiente para o produto {product.name}"
+                f"disponível: {product.stock}"
             )
 
         product.stock -= quantity
