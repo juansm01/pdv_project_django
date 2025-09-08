@@ -13,7 +13,7 @@ from .serializers import ProductSerializer, SaleSerializer
 from api.utils.logger import logger
 from rest_framework.exceptions import ValidationError
 
-
+# classe para listar todos os produtos e cadastrar um novo produto
 class ProductsAPIView(APIView):
 
     # api para listar todos produtos
@@ -31,8 +31,7 @@ class ProductsAPIView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
-
+# classe para listar todas as vendas e cadastrar uma nova venda
 class SalesAPIView(APIView):
 
     # Listar venda
@@ -49,7 +48,7 @@ class SalesAPIView(APIView):
         # conteudo da request (body)
         return create(request.data)
 
-
+# classe para detalhar, atualizar e deletar um produto
 class ProductDetailAPIView(APIView):
 
     # Listar produto
@@ -66,7 +65,7 @@ class ProductDetailAPIView(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+
     # Deletar produto
     def delete(self, request, pk):
         product = get_object_or_404(Product, pk=pk)

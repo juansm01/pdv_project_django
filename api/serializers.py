@@ -4,7 +4,7 @@ from .models import Product, Sale, SaleItem
 
 
 class ProductSerializer(serializers.Serializer):
-    id = serializers.IntegerField(read_only=True)
+    id = serializers.UUIDField(read_only=True)
     name = serializers.CharField(max_length=255)
     price = serializers.DecimalField(max_digits=10, decimal_places=2)
     stock = serializers.IntegerField()
@@ -41,7 +41,7 @@ class SaleItemSerializer(serializers.Serializer):
 
 
 class SaleSerializer(serializers.Serializer):
-    id = serializers.IntegerField(read_only=True)
+    id = serializers.UUIDField(read_only=True)
     date = serializers.DateTimeField(read_only=True)
     items = SaleItemSerializer(many=True, read_only=True)
     create_items = serializers.ListField(

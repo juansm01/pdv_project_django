@@ -8,7 +8,7 @@ class SaleItemInline(admin.TabularInline):
 
     model = SaleItem
     fields = ["product", "quantity", "unit_price"]
-    readonly_fields = ["unit_price"]
+    #readonly_fields = ["unit_price"]
     extra = 0
 
 
